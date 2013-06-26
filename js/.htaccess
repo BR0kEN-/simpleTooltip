@@ -1,0 +1,7 @@
+Order allow,deny
+Deny from all
+
+<FilesMatch "\.(js|htc)$|^$">
+   Order deny,allow
+   Allow from all
+</FilesMatch>
