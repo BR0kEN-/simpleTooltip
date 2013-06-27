@@ -15,7 +15,7 @@
 
 			t = $(this);
 
-			t.css('position', t.css('position') == 'static' ? 'relative' : !1);
+			t.css('position') == 'static' ? t.css('position', 'relative') : !1;
 
 		}).on('mouseenter mouseleave', function(e){
 
