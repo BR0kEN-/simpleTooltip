@@ -6,7 +6,7 @@ v\:fill {
 }
 [data-tooltip]:before {
 	background:#111;
-	behavior:url(../js/corners.htc);
+	behavior:url(../assets/js/corners.htc);
 }
 [data-tooltip^=n]:after {
 	border-bottom-color:#111;

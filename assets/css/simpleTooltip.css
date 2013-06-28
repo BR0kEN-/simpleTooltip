@@ -1,7 +1,10 @@
 /* simpleTooltip by BR0kEN */
+#tooltip_width, [data-tooltip]:before, [data-tooltip]:after {
+	display:none;
+	font:normal 11px/24px Arial;
+}
 [data-tooltip]:before, [data-tooltip]:after {
 	position:absolute;
-	display:none;
 	z-index:1000;
 }
 [data-tooltip]:before {
@@ -9,9 +12,9 @@
 	color:#fff;
 	padding:0 5px;
 	border-radius:2px;
-	text-align:center;
 	background:rgba(0,0,0,.8);
-	font:normal 11px/24px Arial;
+	text-align:center;
+	white-space:nowrap;
 }
 [data-tooltip]:after {
 	content:'';
@@ -46,14 +49,14 @@
 	margin-bottom:-5px;
 	border-top-color:rgba(0,0,0,.8);
 }
-/* direction => NW & NE & SW & SE */
-[data-tooltip$=w]:before, [data-tooltip$=w]:after {
+/* direction => NW & NE & SW & SE & North & South */
+[data-tooltip$=w]:before, [data-tooltip$=w]:after, [data-tooltip$=th]:before, [data-tooltip$=th]:after {
 	left:50%;
 }
 [data-tooltip$=w]:before {
 	margin-left:-15px;
 }
-[data-tooltip$=w]:after {
+[data-tooltip$=w]:after, [data-tooltip$=th]:after {
 	margin-left:-5px;
 }
 [data-tooltip$=e]:before, [data-tooltip$=e]:after {
@@ -95,10 +98,6 @@
 	margin-left:-10px;
 	border-left-color:rgba(0,0,0,.8);
 }
-/* direction => North & South */
-[data-tooltip$=th]:before, [data-tooltip$=th]:after {
-	left:50%;
-}
-[data-tooltip$=th]:after {
-	margin-left:-5px;
+#tooltip_width {
+	float:left;
 }

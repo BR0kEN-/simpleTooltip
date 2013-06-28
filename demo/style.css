@@ -2,9 +2,11 @@ body {
 	height:100%;
 	color:#333;
 	cursor:default;
-	font-size:12px;
-	font-family:Arial, Verdana;
-	font-weight:normal;
+	font:normal 12px/17px Arial;
+}
+a {
+	color:#444;
+	text-decoration:none;
 }
 h1, h2, h3 {
 	margin:0;
@@ -31,23 +33,19 @@ section h3 {
 }
 section div {
 	float:left;
-	background:#ccc;
-	margin:0 5px 5px 0;
-	border-radius:2px;
 	width:200px;
 	height:50px;
-	line-height:50px;
+	margin:0 5px 5px 0;
+	border-radius:2px;
 	text-align:center;
+	line-height:50px;
+	background:#ccc;
 }
 section div:hover {
 	background:#c1c1c1;
 }
 section div:nth-child(6) {
 	background:#eee;
-}
-section a {
-	color:#444;
-	text-decoration:none;
 }
 .relative a {
 	line-height:50px;
