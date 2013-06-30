@@ -61,6 +61,17 @@ $.simpleTooltip(400); // теперь макс. ширина тултипа ра
 - Android 1.0+
 - iOS 1.0+
 
+Changelog
+-------
+# Версия [1.0](https://github.com/BR0kEN-/simpleTooltip/tree/v1.0):
+- дебютная версия с поддержкой IE8.
+
+# Версия [1.0.1](https://github.com/BR0kEN-/simpleTooltip/tree/v1.0.1):
+- убрана поддержка IE8;
+- проведен рефакторинг кода;
+- добавлены минифицированные CSS и JS;
+- отказ от атрибута *data-title* в пользу более семантичного *title*;
+
 Демонстрация
 -------
 http://firstvector.org/simpleTooltip
