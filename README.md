@@ -63,10 +63,10 @@ $.simpleTooltip(400); // теперь макс. ширина тултипа ра
 
 Changelog
 -------
-# Версия [1.0](https://github.com/BR0kEN-/simpleTooltip/tree/v1.0):
+**Версия [1.0](https://github.com/BR0kEN-/simpleTooltip/tree/v1.0)**:
 - дебютная версия с поддержкой IE8.
 
-# Версия [1.0.1](https://github.com/BR0kEN-/simpleTooltip/tree/v1.0.1):
+**Версия [1.0.1](https://github.com/BR0kEN-/simpleTooltip/tree/v1.0.1)**:
 - убрана поддержка IE8;
 - проведен рефакторинг кода;
 - добавлены минифицированные CSS и JS;
