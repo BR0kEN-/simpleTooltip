@@ -5,18 +5,5 @@ v\:fill {
 	BEHAVIOR:url(#default#VML);
 }
 [data-tooltip]:before {
-	background:#111;
 	behavior:url(../assets/js/corners.htc);
-}
-[data-tooltip^=n]:after {
-	border-bottom-color:#111;
-}
-[data-tooltip^=s]:after {
-	border-top-color:#111;
-}
-[data-tooltip=west]:after {
-	border-right-color:#111;
-}
-[data-tooltip=east]:after {
-	border-left-color:#111;
 }

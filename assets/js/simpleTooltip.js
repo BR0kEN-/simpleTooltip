@@ -9,31 +9,34 @@
 */
 (function(){
 	$.simpleTooltip = function(a){
-		var max = a ? a : 300, body = $('body');
+		if (!/msie 8/.test(navigator.userAgent.toLowerCase())) {
+			var max = a ? a : 300, body = $('body');
 
-		$('[data-tooltip]').each(function(){
-
-			t = $(this);
-
-			t.css('position') == 'static' ? t.css('position', 'relative') : !1;
-
-		}).on('mouseenter mouseleave', function(e){
-
-			if (e.type == 'mouseenter') {
+			$('[data-tooltip]').each(function(){
 
 				t = $(this);
 
-				body.append('<div id="tooltip_width">'+ t.data('title') +'</div>');
+				t.attr('data-title', this.title).removeAttr('title');
+				if (t.css('position') == 'static') t.css('position', 'relative');
 
-				width = $('#tooltip_width').width(), styles = '';
+			}).on('mouseenter mouseleave', function(e){
 
-				if (width > max) width = max, styles = '[data-tooltip]:before{width:'+ width +'px;text-align:left;line-height:17px;padding:2px 5px;white-space:normal}';
-				if (t.data('tooltip').slice(-2) == 'th') styles += '[data-tooltip$=th]:before{margin-left:-'+ ((width + 10) / 2) +'px}';
-				if (styles) body.append('<style id="tooltip_style">'+ styles +'</style>');
+				if (e.type == 'mouseenter') {
 
-			} else $('#tooltip_style, #tooltip_width').remove();
+					t = $(this);
 
-		});
+					body.append('<div id="tooltip_width">'+ t.data('title') +'</div>');
+
+					width = $('#tooltip_width').width(), styles = '';
+
+					if (width > max) width = max, styles = '[data-tooltip]:before{width:'+ width +'px;text-align:left;line-height:17px;padding:2px 5px;white-space:normal}';
+					if (t.data('tooltip').slice(-2) == 'th') styles += '[data-tooltip$=th]:before{margin-left:-'+ ((width + 10) / 2) +'px}';
+					if (styles) body.append('<style id="tooltip_style">'+ styles +'</style>');
+
+				} else $('#tooltip_style, #tooltip_width').remove();
+
+			});
+		} else return !1;
 	};
 })(jQuery);
 
