@@ -1,0 +1,53 @@
+<project name="test">
+	<property name="web.dir" value="."/>
+	<property name="input.dir" value="${web.dir}/src"/>
+	<property name="output.dir" value="${web.dir}/assets"/>
+
+	<target name="clean_js" description="Clean output directories">
+		<delete>
+			<fileset dir="${output.dir}/js">
+				<include name="*.js"/>
+			</fileset>
+		</delete>
+	</target>
+
+	<target name="clean_css" description="Clean output directories">
+		<delete>
+			<fileset dir="${output.dir}/css">
+				<include name="*.css"/>
+			</fileset>
+		</delete>
+	</target>
+
+	<taskdef name="yuicompress" classname="net.noha.tools.ant.yuicompressor.tasks.YuiCompressorTask">
+		<classpath>
+			<pathelement path="${web.dir}/build/yuicompressor-2.4.7.jar" />
+			<pathelement path="${web.dir}/build/yui-compressor-ant-task-0.5.jar" />
+			<pathelement path="${web.dir}/build/rhino-1.6R7.jar" />
+		</classpath>
+	</taskdef>
+
+
+	<target name="compress_javascript" depends="clean_js">
+		<echo>Compressing files</echo>
+		<yuicompress munge="yes"  preserveallsemicolons="yes" toDir="${output.dir}/js" fromDir="${input.dir}" jssuffix=".js" >
+			<include name="*.js"/>
+		</yuicompress>
+	</target>
+
+	<target name="compress_css" depends="clean_css">
+		<echo>Compressing files</echo>
+		<yuicompress munge="yes"  preserveallsemicolons="yes" toDir="${output.dir}/css" fromDir="${input.dir}" 	csssuffix=".css">
+			<include name="*.css"/>
+		</yuicompress>
+	</target>
+
+	<target name="build">
+		<parallel threadCount="2">
+			<sequential>
+				<antcall target="compress_javascript"/>
+				<antcall target="compress_css"/>
+			</sequential>
+		</parallel>
+	</target>
+</project>
