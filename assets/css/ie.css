@@ -1,9 +1,0 @@
-v\:roundrect {
-	BEHAVIOR:url(#default#VML);
-}
-v\:fill {
-	BEHAVIOR:url(#default#VML);
-}
-[data-tooltip]:before {
-	behavior:url(../assets/js/corners.htc);
-}
