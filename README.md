@@ -1,59 +1,52 @@
 simpleTooltip
 =============
 
-**simpleTooltip** - аналог или lite-вариант [Tipsy Tooltip](https://github.com/jaz303/tipsy).
+**simpleTooltip** - analog or lite-version of [Tipsy Tooltip](https://github.com/jaz303/tipsy).
 
-Большая часть реализована на чистом CSS, но контролером выступает небольшой jQuery плагин.
+Most part of develop implemented on CSS, but role of controller perform a small plugin for jQuery. 
 
-Название
+Вenotation
 -------
-Почему **simpleTooltip**?
-- всего 3 Кб исчерпывающего кода;
-- работа во всех браузерах;
-- простота в использовании;
-- компактный и гармоничный внешний вид;
-- простые текстовые подскаки без доп. функционала.
+Why named a **simpleTooltip**?
+- only **3Kb** exhaustive code;
+- works in all browsers;
+- easy to use;
+- compact and harmonious appearance;
+- simple text prompts without additional functional.
 
-Думается мне, эти пункты вполне раскрывают основную идею разработки - простоту.
+It seems to me, these items completely reveal the basic idea of develop - simplicity.
 
-Использование
+Usage
 -------
-Использование подсказок возможно на любом HTML элементе. Для этого необходимо присвоить ему пару атрибутов: 
-*data-tooltip* и *title*. Значением первого может быть одно из предопределенных слов и влияет оно на позиционирование 
-подсказки относительно элемента которому она дана. Контекст второго атрибута - текст подсказки без какого-либо 
-форматирования (text/plain).
+Use of tooltip possible on any HTML element. To do this, you must assign couple attributes for element:
+*data-hint* and *data-title*. Value of first attribute must be one of predefined words and it affects 
+on positioning of tooltip relative element which it's given. Context of second - text of tooltip without 
+any of formatting (text/plain).
 
-Возможные значения для атрибута **data-tooltip** и их влияние на смещение:
-- **nw** - северо-западное;
-- **north** - северное;
-- **ne** - северо-восточное;
-- **west** - западное;
-- **east** - восточное;
-- **sw** - юго-западное;
-- **south** - южное;
-- **se** - юго-восточное.
+Possible values for an attribute **data-hint** and their impact on shift:
+- **nw** - Northwest;
+- **north** - North;
+- **ne** - Northeast;
+- **west** - West;
+- **east** - East;
+- **sw** - Southwest;
+- **south** - South;
+- **se** - Southeast.
 
-Помимо этих опций есть возможность указать максимальную ширину подсказки в пикселях. Для этого, в файле 
-**simpleTooltip.js**, функции-обработчику неообходимо присвоить числовой аргумент, например:
-
-```javascript
-$.simpleTooltip(400); // теперь макс. ширина тултипа равна 400px.
-```
-
-Зачем JavaScript?
+Why was used the JavaScript?
 -------
-Функции jQuery плагина не многочислены. Изначально он проверяет позиционирование всех элементов которым установлена
-подсказка - оно не должно быть статическим. По-этому, все несоответствующие элементы стают относительными.
+Functions of plugin isn't numerous. Initially, performed checks positioning of all elements which have a 
+tooltip - it shouldn't be a static. For this reason, all non-conforming elements receive relative positioning.
 
-Далее, при наведении мыши на элемент с подсказкой, расчитывается его ширина и, если она не привышает максимальную и
-смещение не направлено на юг или север, работа плагина прекращается. В противных случаях работа будет продолжена 
-еще на одно или два действия:
-- ширина больше максимальной - тултип получает ширину со значением максимальной и особое форматирование текста.
-- южное или северное направление - подсказка выравнивается по центру элемента которому она присвоена.
+Then, when you hover the mouse over an element, its width is calculated and if it not more than maximal and 
+tooltip don't directed to south or north, work of plugin will be stopped. Otherwise, the work will continue for 
+a few actions:
+- width is greater maximal - tooltip gets value of maximum width and a special text formatting.
+- directed on south or north - tooltip is aligned to center of element which it's assigned.
 
-Кроссбраузерность
+Crossbrowsing
 -------
-- IE9+
+- IE8+
 - Chrome 2.0+
 - Opera 9.0+
 - Safari 3.1+
@@ -63,15 +56,32 @@ $.simpleTooltip(400); // теперь макс. ширина тултипа ра
 
 Changelog
 -------
-**Версия [1.0](https://github.com/BR0kEN-/simpleTooltip/tree/v1.0)**:
-- дебютная версия с поддержкой IE8.
+**Version [1.0](https://github.com/BR0kEN-/simpleTooltip/tree/v1.0)**:
+- first public version with support of IE8.
 
-**Версия [1.0.1](https://github.com/BR0kEN-/simpleTooltip/tree/v1.0.1)**:
-- убрана поддержка IE8;
-- проведен рефакторинг кода;
-- добавлены минифицированные CSS и JS;
-- отказ от атрибута *data-title* в пользу более семантичного *title*;
+**Version [1.0.1](https://github.com/BR0kEN-/simpleTooltip/tree/v1.0.1)**:
+- support of IE8 was removed;
+- held code refactoring;
+- added minimized CSS and JS;
+- rejection of *data-title* attribute in favor of a more semantically *title*.
 
-Демонстрация
+**Version [1.5.0](https://github.com/BR0kEN-/simpleTooltip/tree/v1.5.0)**:
+- fixed [issue #4](https://github.com/BR0kEN-/simpleTooltip/issues/4);
+- added the MIT license;
+- added JSON manifest;
+- developed horizontal auto positioning;
+- modified [.gitignore](https://github.com/BR0kEN-/simpleTooltip/blob/master/.gitignore);
+- [readme.md](https://github.com/BR0kEN-/simpleTooltip/blob/master/README.md) translated into english;
+- to [demonstration](http://firstvector.org/simpleTooltip) was added content with tooltips, which loaded by means of AJAX\*;
+- return to data-* attribute for tooltip text - tooltip & title nevertheless are different things;
+- data-tooltip attribute was changed on data-hint;
+- code was reduced and architecture changed;
+- support of IE8 was returned.
+
+\* HTML elements which will loaded by means of AJAX and having the tooltip must have positioning as relative or absolute.
+
+Links
 -------
-http://firstvector.org/simpleTooltip
+- **Demonstration:** http://firstvector.org/simpleTooltip
+- **Plugin page:** http://plugins.jquery.com/simpleTooltip/
+- **Presentational publication (ru):** http://habrahabr.ru/post/185110/

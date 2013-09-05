@@ -1,0 +1,22 @@
+v\:roundrect {
+	BEHAVIOR:url(#default#VML);
+}
+v\:fill {
+	BEHAVIOR:url(#default#VML);
+}
+[data-hint]:before {
+	behavior:url(corners.htc);
+    background:#111;
+}
+[data-hint^=n]:after {
+    border-bottom-color:#111;
+}
+[data-hint^=s]:after {
+    border-top-color:#111;
+}
+[data-hint=west]:after {
+    border-right-color:#111;
+}
+[data-hint=east]:after {
+    border-left-color:#111;
+}
