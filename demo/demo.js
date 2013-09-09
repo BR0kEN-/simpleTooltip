@@ -8,13 +8,13 @@ dynamic.children().click(function(e){
 			dynamic.slideUp(400, function(){
 				dynamic.remove();
 
-				$('footer').before('<section role="region" class="ajax clr" style="display: none;">'+ data +'</section>');
-				$('.ajax').slideDown(400);
+				$('footer').before('<section role="region" class="ajax clr" hidden>'+ data +'</section>');
+				$('.ajax').slideDown(999);
 			});
 		}
 	});
 });
 
-$('a').click(function(e){
+$('a:not(footer a)').click(function(e){
 	e.preventDefault();
 });

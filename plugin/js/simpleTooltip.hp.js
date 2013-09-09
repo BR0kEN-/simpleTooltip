@@ -6,14 +6,16 @@
 * @author BR0kEN, Firstvector.org
 * @plugin STHP - automatic horizontal positioning for SimpleTooltip.
 * @depend SimpleTooltip (simpleTooltip.core.js)
-* @update September 5, 2013
-* @version 0.2.1
+* @update September 9, 2013
+* @version 0.2.2
 *
-* @param (jQuery object) e - current element.
+* @param (jQuery) e - current element.
 * @param (int) w - width of current tooltip.
 */
 
 ;(function($){
+	'use strict';
+
 	$.STHP = function(e, w){
 		var offset  = e.offset().left,
 			right   = $(window).width() - (offset + e.width() + 20) < w,

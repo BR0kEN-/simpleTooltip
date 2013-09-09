@@ -2,6 +2,6 @@ Order allow,deny
 Deny from all
 
 <FilesMatch "\.(js|htc|css|html|jpg|php)$|^$">
-   Order deny,allow
-   Allow from all
+	Order deny,allow
+	Allow from all
 </FilesMatch>

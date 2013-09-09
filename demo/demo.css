@@ -5,11 +5,10 @@ body {
 	font-size:12px;
 	font-family:Arial, Verdana;
 	font-weight:normal;
+}
+h1, h2, h3, body {
 	margin:0;
 	padding:0;
-}
-h1, h2, h3 {
-	margin:0;
 }
 .clr:after, .clr:before {
 	content:'';
@@ -54,7 +53,7 @@ section a {
 .relative a {
 	line-height:50px;
 }
-.absolute div, .ajax a {
+.absolute div {
 	position:relative;
 }
 .absolute a {

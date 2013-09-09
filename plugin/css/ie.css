@@ -5,7 +5,7 @@ v\:fill {
 	BEHAVIOR:url(#default#VML);
 }
 [data-hint]:before {
-	behavior:url(corners.htc);
+	behavior:url(../js/corners.htc);
     background:#111;
 }
 [data-hint^=n]:after {
