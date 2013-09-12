@@ -92,6 +92,11 @@ Changelog
 - increased a functionality of plugin at expense of refusing of jQuery;
 - created a passive object for expanding the opportunities of plugin (syntax is identical to the jQuery: look to STHP plugin for example).
 
+**Version [1.5.6](https://github.com/BR0kEN-/simpleTooltip/tree/v1.5.6)**:
+- fix bug with auto positioning of tooltips, which assigned for element with absolute positioning;
+- CSS has been upgraded and this allowed reduce the JS;
+- updated [demonstration](http://firstvector.org/simpleTooltip).
+
 Links
 -------
 - **Demonstration:** http://firstvector.org/simpleTooltip

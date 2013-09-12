@@ -1,10 +1,11 @@
 /* simpleTooltip by BR0kEN */
-#hint_div {
-	float:left;
+#hintdiv {
+	position:absolute;
 	visibility:hidden;
+	left:-100000000px;
 }
-#hint_div, [data-hint]:before, [data-hint]:after {
-	font:normal 11px/24px Arial;
+#hintdiv, [data-hint]:before, [data-hint]:after {
+	font:normal 11px/16px Arial;
 }
 [data-hint]:before, [data-hint]:after {
 	display:none;
@@ -16,19 +17,18 @@
 [data-hint]:before {
 	content:attr(data-title);
 	color:#fff;
-	padding:0 5px;
+	text-align:left;
+	padding:4px 5px;
 	border-radius:2px;
-	background:rgba(0,0,0,.8);
-	text-align:center;
 	white-space:nowrap;
+	background:rgba(0,0,0,.8);
 }
 [data-hint]:after {
 	content:'';
-	height:0;
 	width:0;
-	border:solid transparent;
-	border-width:5px;
+	height:0;
 	pointer-events:none;
+	border:5px solid transparent;
 }
 [data-hint]:hover:before, [data-hint]:hover:after {
 	display:block;
