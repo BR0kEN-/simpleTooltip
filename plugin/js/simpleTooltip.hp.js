@@ -22,19 +22,21 @@
 		* @param (int) offset - offset of an element relative to the left edge of screen;
 		* @param (bool) right - will true when tooltip didn't fit in window from right side;
 		* @param (bool)  left - analogical of previous option, but for left side;
-		* @param (string) val - contains the value of "data-hint" attribute.
+		* @param (string) val - contains the value of "data-hint" attribute;
+		* @param (int) 		 ln - number of letters.
 		*/
-		var offset 	= e.offsetLeft,
+		var offset 	= e.offsetLeft || e.parentNode.offsetLeft,
 				right		= window.innerWidth - (offset + e.offsetWidth + 20) < w,
 				left 		= offset - 20 < w,
-				val 		= e.getAttribute('data-hint');
+				val 		= e.getAttribute('data-hint'),
+				ln 			= val.length;
 
 		/**
 		* Checking the direction of tooltip and updating a value of attribute for
 		* changing his direction in cases, when tooltip doesn't fit in window.
 		*/
-		if ((left || right) && val.length != 5) {
-			e.setAttribute('data-hint', val.length == 2 ? val[0] + (left ? 'w' : right ? 'e' : '') : (left ? 'west' : right ? 'east' : ''));
+		if ((left || right) && ln < 5) {
+			e.setAttribute('data-hint', ln < 3 ? val[0] + (left ? 'w' : right ? 'e' : '') : (left ? 'west' : right ? 'east' : ''));
 		}
 	};
 })(simpleTooltip);

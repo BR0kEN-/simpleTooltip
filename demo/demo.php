@@ -7,7 +7,7 @@ ini_set('error_reporting', E_ALL ^ E_WARNING ^ E_NOTICE);
 
 if ($_POST['hint'] == 'dynamic') {
 
-	echo '<h2>Контент, загруженный с исп. технологии AJAX</h2>
+	echo '<h2>Статические элементы c подсказками, загруженные AJAX запросом</h2>
 	<div>
 		<a href="#" data-hint="nw" data-title="This is an example of Northwest gravity">Northwest</a>
 	</div>
