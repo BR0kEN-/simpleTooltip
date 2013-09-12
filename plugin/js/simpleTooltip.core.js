@@ -21,7 +21,7 @@
 * @param (object) X - alias for XMLHttpRequest;
 */
 
-;function simpleTooltip(){};
+;var simpleTooltip = {};
 
 (function($, W, D, X){
 	'use strict';
@@ -29,7 +29,8 @@
 	/**
 	* @const (object) CSS - HTML tag style for actual styles;
 	* @const (object) TWD - DOM node for detecting width of hint;
-	* @const (bool) IE8 - check styleSheet property which available in IE8.
+	* @const (object) IE8 - check styleSheet property which available in IE8.
+	*	In other browsers the value will be undefined.
 	*/
 	var CSS, TWD, IE8,
 
@@ -77,7 +78,7 @@
 				*/
 				if (width > 300) {
 					width = 300,
-					style = '[data-hint]:before{width:'+ width +'px;text-align:left;line-height:17px;padding:2px 5px;white-space:normal;}';
+					style = '[data-hint]:before{width:300px;white-space:normal}';
 				}
 
 				/**
@@ -107,11 +108,11 @@
 	* Function which will set the handler on mouseover event.
 	*
 	* @param (object) e - object, which receives a function;
-	* @param (function) fn - function, which set for event.
+	* @param (function) f - function, which set for event.
 	*/
-	show = function(e, fn){
-		if (D.addEventListener) e.addEventListener('mouseover', fn, false);
-		else e.attachEvent('onmouseover', function(){return fn.call(e, W.event)});
+	show = function(e, f){
+		if (D.addEventListener) e.addEventListener('mouseover', f, false);
+		else e.attachEvent('onmouseover', function(){return f.call(e, W.event)});
 	},
 
 	/**
@@ -123,7 +124,7 @@
 	node = function(name){
 		var e = D.body.appendChild(D.createElement(name));
 
-		e.id = 'hint_' + name;
+		e.id = 'hint' + name;
 
 		return e;
 	};
