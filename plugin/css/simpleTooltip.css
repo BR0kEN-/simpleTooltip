@@ -1,10 +1,13 @@
 /* simpleTooltip by BR0kEN */
-#hint_width {
+#hint_div {
 	float:left;
+	visibility:hidden;
 }
-#hint_width, [data-hint]:before, [data-hint]:after {
-	display:none;
+#hint_div, [data-hint]:before, [data-hint]:after {
 	font:normal 11px/24px Arial;
+}
+[data-hint]:before, [data-hint]:after {
+	display:none;
 }
 [data-hint]:before, [data-hint]:after {
 	position:absolute;

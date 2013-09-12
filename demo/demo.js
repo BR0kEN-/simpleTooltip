@@ -1,20 +1,26 @@
-var dynamic = $('#dynamic');
+;(function(D){
+	'use strict';
 
-dynamic.children().click(function(e){
-	e.preventDefault();
+	var dynamic = D.querySelector('.dynamic'),
 
-	$.post('/examples/simpleTooltip/demo/demo.php', {hint:dynamic.attr('id')}, function(data){
-		if (data != 'Hacking Attempt!') {
-			dynamic.slideUp(400, function(){
-				dynamic.remove();
+	send = dynamic.children[0],
 
-				$('footer').before('<section role="region" class="ajax clr" hidden>'+ data +'</section>');
-				$('.ajax').slideDown(999);
-			});
-		}
-	});
-});
+	click = function(){
+		var XHR = new XMLHttpRequest;
 
-$('a:not(footer a)').click(function(e){
-	e.preventDefault();
-});
+		XHR.open('POST', '/examples/simpleTooltip/demo/demo.php', !0);
+		XHR.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+		XHR.send('hint=dynamic');
+		XHR.onreadystatechange = function(){
+			if (this.readyState == 4 && this.status == 200) {
+				send.parentNode.removeChild(send);
+
+				dynamic.innerHTML += this.responseText;
+			}
+		};
+	};
+
+	if (D.addEventListener) send.addEventListener('click', click, !1);
+	else send.attachEvent('onclick', function(){return click.call(send, window.event)});
+
+})(document);

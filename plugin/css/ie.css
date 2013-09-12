@@ -5,18 +5,18 @@ v\:fill {
 	BEHAVIOR:url(#default#VML);
 }
 [data-hint]:before {
-	behavior:url(../js/corners.htc);
-    background:#111;
+	behavior:url(corners.htc);
+	background:#111;
 }
 [data-hint^=n]:after {
-    border-bottom-color:#111;
+	border-bottom-color:#111;
 }
 [data-hint^=s]:after {
-    border-top-color:#111;
+	border-top-color:#111;
 }
 [data-hint=west]:after {
-    border-right-color:#111;
+	border-right-color:#111;
 }
 [data-hint=east]:after {
-    border-left-color:#111;
+	border-left-color:#111;
 }

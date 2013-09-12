@@ -3,16 +3,17 @@ simpleTooltip
 
 **simpleTooltip** - analog or lite-version of [Tipsy Tooltip](https://github.com/jaz303/tipsy).
 
-Most part of develop implemented on CSS, but role of controller perform a small plugin for jQuery.
+Most part of develop implemented on CSS, but role of controller perform a small JavaScript library.
 
 Вenotation
 -------
 Why named a **simpleTooltip**?
-- only **3Kb** exhaustive code;
-- works in all browsers;
+- only **3 Kb** exhaustive code;
+- works in most browsers;
 - easy to use;
 - compact and harmonious appearance;
-- simple text prompts without additional functional.
+- simple text prompts without additional functional;
+- a JavaScript controller - is a library, which may be expanded by new plugins.
 
 It seems to me, these items completely reveal the basic idea of develop - simplicity.
 
@@ -84,10 +85,14 @@ Changelog
 - fixed [issue #5](https://github.com/BR0kEN-/simpleTooltip/issues/5);
 - added strict mode to STHP;
 - updated corners.htc;
-- updated [demonstration](http://firstvector.org/simpleTooltip);
+- updated [demonstration](http://firstvector.org/simpleTooltip).
+
+**Version [1.5.5](https://github.com/BR0kEN-/simpleTooltip/tree/v1.5.5)**:
+- code of plugin has been ported to pure, native, javascript;
+- increased a functionality of plugin at expense of refusing of jQuery;
+- created a passive object for expanding the opportunities of plugin (syntax is identical to the jQuery: look to STHP plugin for example).
 
 Links
 -------
 - **Demonstration:** http://firstvector.org/simpleTooltip
-- **Plugin page:** http://plugins.jquery.com/simpleTooltip/
 - **Presentational publication (ru):** http://habrahabr.ru/post/185110/

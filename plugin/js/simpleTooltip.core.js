@@ -4,113 +4,150 @@
 * See information about our team: http://firstvector.org/humans.txt
 *
 * @author BR0kEN, Firstvector.org
-* @plugin SimpleTooltip
-* @depend jQuery
-* @update September 9, 2013
-* @version 1.5.1
+* @plugin simpleTooltip
+* @update September 12, 2013
+* @version 1.5.5 Pure
 *
-* Global (plugin context) variables:
-* @param (jQuery) body - document "body" node.
-* @const (jQuery) CSS  - HTML tag style for actual styles.
-* @const (jQuery) TWD  - DOM node for detecting width of hint.
+* Global variables:
+* @param (object) simpleTooltip - plugin definition.
 *
-* Variables of general purpose:
-* @param (jQuery) t - always contains "this" for one of jQuery methods.
+* Note: The simpleTooltip object can be expanded by custom methods. The syntax
+*				is identical to the jQuery. Look to STHP plugin for example.
+*
+* Private variables:
+* @param (object) $ - alias for @simpleTooltip;
+* @param (object) W - alias for window;
+* @param (object) D - alias for document;
+* @param (object) X - alias for XMLHttpRequest;
 */
 
-;(function($){
+;function simpleTooltip(){};
+
+(function($, W, D, X){
 	'use strict';
 
-	var body, CSS, TWD;
-
-	$(document).on('ready ajaxSuccess', function(e){
-		/**
-		* Checking state of DOM.
-		*/
-		var ready = e.type == 'ready';
-
-		/**
-		* Append div to body for calculate width of tooltip
-		* and style - for applying styles for current hint.
-		*
-		* Then save jQuery object in appropriate variables.
-		*/
-		if (ready) {
-			body = $(this.body).append('<div id="hint_width" /><style id="hint_style" />'),
-			TWD  = $('#hint_width'),
-			CSS  = $('#hint_style');
-		}
-
-		/**
-		* Run cycle on all elements with hint and check positioning
-		* of each. Set relative positioning if it is static.
-		*
-		* Note: cycle will start instantly on DOM ready state, but after
-		* successful AJAX call his start will postponed on half a second
-		* which needed for appending new elements in DOM (if it is).
-		*/
-		setTimeout(function(){
-			$('[data-hint]').each(function(){
-				var t = $(this);
-
-				if (t.css('position').length < 7) t.css('position', 'relative');
-			});
-		}, ready ? 0 : 500);
+	/**
+	* @const (object) CSS - HTML tag style for actual styles;
+	* @const (object) TWD - DOM node for detecting width of hint;
+	* @const (bool) IE8 - check styleSheet property which available in IE8.
+	*/
+	var CSS, TWD, IE8,
 
 	/**
-	* @param (int) width - 	check availability of data-width attribute.
-	* 						In the absence of attribute the following will occur:
-	*						in node which has been saved to @TWD, will be placed
-	*						a text of tooltip and then be calculated width of him.
-	*
-	* @param (string) style - accumulation of CSS rules for applying to this tooltip.
+	* Function for initialize or reinitialize a plugin.
+	* She's contains cycle, which will iterates on all elements which have the hint.
 	*/
-	}).on('mouseenter', '[data-hint]', function(){
-
+	init = function(){
 		/**
-		* Action on hover to element with tooltip.
+		* @param (int) i - number of current iteration;
+		* @param (object) hint - collection of elements with tooltips;
+		* @param (int) total - total count of all tooltips.
 		*/
-		var t 	  = $(this),
-			width = t.data('width') || t.data('width', TWD.html(t.data('title')).width()).data('width'),
-			style = '';
+		for (var i = 0, hint = D.querySelectorAll('[data-hint]'), total = hint.length; i < total; ++i) {
 
-		/**
-		* Set width to 300px if she's more than and set styles to @style.
-		*/
-		if (width > 300) {
-			width = 300,
-			style = '[data-hint]:before{width:'+ width +'px;text-align:left;line-height:17px;padding:2px 5px;white-space:normal;}';
+			/**
+			* Checking the position of each an element having a
+			* tooltip - set relative positioning if it is static.
+			*/
+			if ((IE8 ? hint[i].currentStyle : W.getComputedStyle(hint[i])).position.length < 7) {
+				hint[i].style.position = 'relative';
+			}
+
+			/**
+			* Setting the handlers for all elements with tooltips.
+			*/
+			show(hint[i], function(){
+
+				/**
+				* Post the text of tooltip from the attribute in @TWD element.
+				* Thereafter set the attribute with the value of
+				* tooltip width for current element.
+				*/
+				TWD.innerHTML = this.getAttribute('data-title');
+				this.setAttribute('data-width', TWD.offsetWidth);
+
+				/**
+				* @param (int) width - width of current tooltip;
+				* @param (string) style - CSS rules for current tooltip.
+				*/
+				var width = parseInt(this.getAttribute('data-width')), style = '';
+
+				/**
+				* Set width to 300px if she's more than and set styles to @style.
+				*/
+				if (width > 300) {
+					width = 300,
+					style = '[data-hint]:before{width:'+ width +'px;text-align:left;line-height:17px;padding:2px 5px;white-space:normal;}';
+				}
+
+				/**
+				* Check availability of STHP function and apply her if she's have.
+				*
+				* @function STHP - needed for tooltip auto positioning when she's not fit in window.
+				*/
+				if (typeof $.STHP == 'function') $.STHP(this, width);
+
+				/**
+				* If tooltip must be aligned to middle of element, calculate offset by formula:
+				* width + padding / 2. Then add styles that have been defined just to @style.
+				*/
+				if (this.getAttribute('data-hint').slice(-2) == 'th') {
+					style += '[data-hint$=th]:before{margin-left:-'+ ((width + 10) / 2) +'px}';
+				}
+
+				/**
+				* Applying styles to current tooltip, depending on browser.
+				*/
+				IE8 ? IE8.cssText = style : CSS.innerText = style;
+			});
 		}
+	},
 
-		/**
-		* Check availability of STHP function and apply her if she's have.
-		*
-		* @function STHP - needed for tooltip auto positioning when she's not fit in window.
-		*/
-		if ($.isFunction($.STHP)) $.STHP(t, width);
+	/**
+	* Function which will set the handler on mouseover event.
+	*
+	* @param (object) e - object, which receives a function;
+	* @param (function) fn - function, which set for event.
+	*/
+	show = function(e, fn){
+		if (D.addEventListener) e.addEventListener('mouseover', fn, false);
+		else e.attachEvent('onmouseover', function(){return fn.call(e, W.event)});
+	},
 
-		/**
-		* If tooltip must be aligned to middle of element, calculate offset by formula:
-		* width + padding / 2. Then add styles that have been defined just to @style.
-		*/
-		if (t.data('hint').slice(-2) == 'th') style += '[data-hint$=th]:before{margin-left:-'+ ((width + 10) / 2) +'px}';
+	/**
+	* Creating a HTML node, appointment ID, and place him in document.
+	*
+	* @param (string) name - the name of HTML element;
+	* @return (object) - created element in form of object.
+	*/
+	node = function(name){
+		var e = D.body.appendChild(D.createElement(name));
 
-		/**
-		* IE8 doesn't support applying styles which been added to existing "style"
-		* element. For this reason, on hover on each element with tooltip, styles
-		* for it will be inserted everytime and before this, outdated element will
-		* be deleted.
-		*
-		* In all other cases styles will be placed to existing element
-		* which has been saved in @CSS variable and then be applied.
-		*/
-		if (/msie 8/i.test(navigator.userAgent)) {
+		e.id = 'hint_' + name;
 
-			$('#iest').remove();
+		return e;
+	};
 
-			body.append('<style id="iest">'+ style +'</style>');
+	/**
+	* Creating elements for CSS rules and calculating the width.
+	* Detecting IE8 and run the init function.
+	*/
+	W.onload = function(){
+		TWD = node('div'),
+		CSS = node('style'),
+		IE8 = CSS.styleSheet,
+		init();
+	};
 
-		} else CSS.html(style);
+	/**
+	* Reinitialize plugin after AJAX query.
+	*/
+	var XHR = X.prototype.send;
 
-	});
-})(jQuery);
+	X.prototype.send = function(){
+		setTimeout(init, 500);
+
+		XHR.apply(this, arguments);
+	};
+
+})(simpleTooltip, window, document, XMLHttpRequest);
