@@ -45,9 +45,20 @@ a few actions:
 - width is greater maximal - tooltip gets value of maximum width and a special text formatting.
 - directed on south or north - tooltip is aligned to center of element which it's assigned.
 
+Examples for usage the simpleTooltip method
+-------
+````javascript
+document.getElementById('id').simpleTooltip(); // for Element object
+document.querySelectorAll('.class a').simpleTooltip(); // for NodeList object
+$('.class a').simpleTooltip(); // for jQuery object
+````
+**Remember,** parameter of `.simpleTooltip()` method must be an object and contain a two properties - *shift* & *tip*.
+Value of first - direction of tooltip and it may be the only one of predefined words, which are specified
+in [Usage](#usage) section. And second - is a plain text of tooltip.
+
 Crossbrowsing
 -------
-- IE8+
+- IE9+
 - Chrome 2.0+
 - Opera 9.0+
 - Safari 3.1+
@@ -96,6 +107,12 @@ Changelog
 - fix bug with auto positioning of tooltips, which assigned for element with absolute positioning;
 - CSS has been upgraded and this allowed reduce the JS;
 - updated [demonstration](http://firstvector.org/simpleTooltip).
+
+**Version [2.0.0](https://github.com/BR0kEN-/simpleTooltip/tree/v2.0.0)**:
+- revert from "data-title" to "title" attribute;
+- was performed refusal to support IE8 and suppressed all errors in it;
+- added a new plugin for simpleTooltip: he's needed for assigning method to elements.
+[Click here, for read more about it](#examples-for-usage-the-simpletooltip-method)
 
 Links
 -------

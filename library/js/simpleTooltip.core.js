@@ -5,8 +5,8 @@
 *
 * @author BR0kEN, Firstvector.org
 * @plugin simpleTooltip
-* @update September 12, 2013
-* @version 1.5.5 Pure
+* @update September 13, 2013
+* @version 2.0.0 Pure
 *
 * Global variables:
 * @param (object) simpleTooltip - plugin definition.
@@ -26,19 +26,22 @@
 (function($, W, D, X){
 	'use strict';
 
+	$.exit = !Array.prototype.map;
+
+	if ($.exit) return;
+
 	/**
 	* @const (object) CSS - HTML tag style for actual styles;
 	* @const (object) TWD - DOM node for detecting width of hint;
-	* @const (object) IE8 - check styleSheet property which available in IE8.
-	*	In other browsers the value will be undefined.
 	*/
-	var CSS, TWD, IE8,
+	var CSS, TWD,
 
 	/**
 	* Function for initialize or reinitialize a plugin.
 	* She's contains cycle, which will iterates on all elements which have the hint.
 	*/
 	init = function(){
+
 		/**
 		* @param (int) i - number of current iteration;
 		* @param (object) hint - collection of elements with tooltips;
@@ -46,18 +49,25 @@
 		*/
 		for (var i = 0, hint = D.querySelectorAll('[data-hint]'), total = hint.length; i < total; ++i) {
 
+			if (hint[i].getAttribute('title')) {
+
+				hint[i].setAttribute('data-title', hint[i].getAttribute('title'));
+				hint[i].removeAttribute('title');
+
+			}
+
 			/**
 			* Checking the position of each an element having a
 			* tooltip - set relative positioning if it is static.
 			*/
-			if ((IE8 ? hint[i].currentStyle : W.getComputedStyle(hint[i])).position.length < 7) {
+			if (W.getComputedStyle(hint[i]).position.length < 7) {
 				hint[i].style.position = 'relative';
 			}
 
 			/**
 			* Setting the handlers for all elements with tooltips.
 			*/
-			show(hint[i], function(){
+			hint[i].addEventListener('mouseover', function(){
 
 				/**
 				* Post the text of tooltip from the attribute in @TWD element.
@@ -97,22 +107,11 @@
 				}
 
 				/**
-				* Applying styles to current tooltip, depending on browser.
+				* Applying styles for current tooltip.
 				*/
-				IE8 ? IE8.cssText = style : CSS.innerText = style;
-			});
+				CSS.innerText = style;
+			}, false);
 		}
-	},
-
-	/**
-	* Function which will set the handler on mouseover event.
-	*
-	* @param (object) e - object, which receives a function;
-	* @param (function) f - function, which set for event.
-	*/
-	show = function(e, f){
-		if (D.addEventListener) e.addEventListener('mouseover', f, false);
-		else e.attachEvent('onmouseover', function(){return f.call(e, W.event)});
 	},
 
 	/**
@@ -130,18 +129,17 @@
 	};
 
 	/**
-	* Creating elements for CSS rules and calculating the width.
-	* Detecting IE8 and run the init function.
+	* Creating elements for CSS rules and calculating
+	* the width, and run the init function.
 	*/
 	W.onload = function(){
 		TWD = node('div'),
 		CSS = node('style'),
-		IE8 = CSS.styleSheet,
 		init();
 	};
 
 	/**
-	* Reinitialize plugin after AJAX query.
+	* Reinitialize plugin after any AJAX query.
 	*/
 	var XHR = X.prototype.send;
 

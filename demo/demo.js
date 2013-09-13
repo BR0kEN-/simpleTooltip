@@ -23,4 +23,6 @@
 	if (D.addEventListener) send.addEventListener('click', click, !1);
 	else send.attachEvent('onclick', function(){return click.call(send, window.event)});
 
+	send.simpleTooltip({shift:'south', tip:'This tooltip was assigned by means of custom method'});
+
 })(document);

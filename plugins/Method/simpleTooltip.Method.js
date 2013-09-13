@@ -22,14 +22,24 @@
 * - document.querySelectorAll('.class a').simpleTooltip();
 * - $('.class a').simpleTooltip();
 */
+;(function(){
+	'use strict';
 
-Array.prototype.map.call([Element, NodeList, jQuery], function(Node){
-	Node.prototype.simpleTooltip = function(options){
-		if ((['nw', 'north', 'ne', 'west', 'east', 'sw', 'south', 'se'].indexOf(options.shift) || options.tip.length) < 0) return;
+	var i = 0, ln = arguments.length,
 
-		for (var i = 0, all = this.length || 1; i < all; ++i) {
-			(this[i] || this).setAttribute('data-hint', options.shift);
-			(this[i] || this).setAttribute('data-title', options.tip);
-		}
+	set = function(Node){
+		if (!Node) return;
+
+		Node.prototype.simpleTooltip = function(options){
+			if (simpleTooltip.exit || (['nw', 'north', 'ne', 'west', 'east', 'sw', 'south', 'se'].indexOf(options.shift) || options.tip.length) < 1) return;
+
+			for (var i = 0, all = this.length || 1; i < all; ++i) {
+				(this[i] || this).setAttribute('data-hint', options.shift);
+				(this[i] || this).setAttribute('title', options.tip);
+			}
+		};
 	};
-});
+
+	for (; i < ln; ++i) set(arguments[i]);
+
+})(Element, NodeList, window.jQuery);
