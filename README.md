@@ -131,6 +131,7 @@ by innerText method and, in connection with this, it has been replaced on innerH
 
 Thank you
 -------
+- [Artem Kolodko (heapstore)](https://github.com/heapstore), for the [bug report #4](https://github.com/BR0kEN-/simpleTooltip/issues/4) - *July 3, 2013*.
 - [Igor Bronovskyy (BrunIF)](https://github.com/BrunIF), for the [bug report #7](https://github.com/BR0kEN-/simpleTooltip/issues/7) - *November 15, 2013*.
 
 Links
