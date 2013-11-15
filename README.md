@@ -48,9 +48,20 @@ a few actions:
 Examples for usage the simpleTooltip method
 -------
 ````javascript
-document.getElementById('id').simpleTooltip(); // for Element object
-document.querySelectorAll('.class a').simpleTooltip(); // for NodeList object
-$('.class a').simpleTooltip(); // for jQuery object
+/**
+ * For Element object
+ */
+document.getElementById('id').simpleTooltip();
+
+/**
+ * For NodeList object
+ */
+document.querySelectorAll('.class a').simpleTooltip();
+
+/**
+ * For jQuery object
+ */
+$('.class a').simpleTooltip();
 ````
 **Remember,** parameter of `.simpleTooltip()` method must be an object and contain a two properties - *shift* & *tip*.
 Value of first - direction of tooltip and it may be the only one of predefined words, which are specified
@@ -68,17 +79,17 @@ Crossbrowsing
 
 Changelog
 -------
-**Version [1.0](https://github.com/BR0kEN-/simpleTooltip/tree/v1.0)**:
+**Version [1.0](https://github.com/BR0kEN-/simpleTooltip/tree/v1.0)**, June 27, 2013:
 - first public version with support of IE8.
 
-**Version [1.0.1](https://github.com/BR0kEN-/simpleTooltip/tree/v1.0.1)**:
+**Version [1.0.1](https://github.com/BR0kEN-/simpleTooltip/tree/v1.0.1)**, June 30, 2013:
 - support of IE8 was removed;
 - held code refactoring;
 - added minimized CSS and JS;
 - rejection of *data-title* attribute in favor of a more semantically *title*.
 
-**Version [1.5.0](https://github.com/BR0kEN-/simpleTooltip/tree/v1.5.0)**:
-- fixed [issue #4](https://github.com/BR0kEN-/simpleTooltip/issues/4);
+**Version [1.5.0](https://github.com/BR0kEN-/simpleTooltip/tree/v1.5.0)**, September 5, 2013:
+- fixed an [issue #4](https://github.com/BR0kEN-/simpleTooltip/issues/4);
 - added the MIT license;
 - added JSON manifest;
 - developed horizontal auto positioning;
@@ -92,27 +103,35 @@ Changelog
 
 \* HTML elements which will loaded by means of AJAX and having the tooltip must have positioning as relative or absolute.
 
-**Version [1.5.1](https://github.com/BR0kEN-/simpleTooltip/tree/v1.5.1)**:
-- fixed [issue #5](https://github.com/BR0kEN-/simpleTooltip/issues/5);
+**Version [1.5.1](https://github.com/BR0kEN-/simpleTooltip/tree/v1.5.1)**, September 9, 2013:
+- fixed an [issue #5](https://github.com/BR0kEN-/simpleTooltip/issues/5);
 - added strict mode to STHP;
 - updated corners.htc;
 - updated [demonstration](http://firstvector.org/simpleTooltip).
 
-**Version [1.5.5](https://github.com/BR0kEN-/simpleTooltip/tree/v1.5.5)**:
+**Version [1.5.5](https://github.com/BR0kEN-/simpleTooltip/tree/v1.5.5)**, September 12, 2013:
 - code of plugin has been ported to pure, native, javascript;
 - increased a functionality of plugin at expense of refusing of jQuery;
 - created a passive object for expanding the opportunities of plugin (syntax is identical to the jQuery: look to STHP plugin for example).
 
-**Version [1.5.6](https://github.com/BR0kEN-/simpleTooltip/tree/v1.5.6)**:
+**Version [1.5.6](https://github.com/BR0kEN-/simpleTooltip/tree/v1.5.6)**, September 12, 2013:
 - fix bug with auto positioning of tooltips, which assigned for element with absolute positioning;
 - CSS has been upgraded and this allowed reduce the JS;
 - updated [demonstration](http://firstvector.org/simpleTooltip).
 
-**Version [2.0.0](https://github.com/BR0kEN-/simpleTooltip/tree/v2.0.0)**:
+**Version [2.0.0](https://github.com/BR0kEN-/simpleTooltip/tree/v2.0.0)**, September 13, 2013:
 - revert from "data-title" to "title" attribute;
 - was performed refusal to support IE8 and suppressed all errors in it;
 - added a new plugin for simpleTooltip: he's needed for assigning method to elements.
 [Click here, for read more about it](#examples-for-usage-the-simpletooltip-method)
+
+**Version [2.0.1](https://github.com/BR0kEN-/simpleTooltip/tree/v2.0.1)**, November 16, 2013:
+- fixed an [issue #7](https://github.com/BR0kEN-/simpleTooltip/issues/7): Gecko didn't insert the styles into the container
+by innerText method and, in connection with this, it has been replaced on innerHTML.
+
+Thank you
+-------
+- [Igor Bronovskyy (BrunIF)](https://github.com/BrunIF), for the [bug report #7](https://github.com/BR0kEN-/simpleTooltip/issues/7) - *November 15, 2013*.
 
 Links
 -------
