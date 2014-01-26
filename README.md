@@ -34,6 +34,44 @@ Possible values for an attribute **data-hint** and their impact on shift:
 - **south** - South;
 - **se** - Southeast.
 
+Examples for usage the **simpleTooltip** method:
+-------
+````javascript
+var params = {
+    shift: 'west',
+    tip: 'Some text for displaying'
+};
+
+/**
+ * For Element object
+ */
+document.getElementById('id').simpleTooltip(params);
+
+/**
+ * For NodeList object
+ */
+document.querySelectorAll('.class a').simpleTooltip(params);
+
+/**
+ * For jQuery object
+ */
+$('.class a').simpleTooltip(params);
+````
+**Note,** parameter of `.simpleTooltip()` method must be an object and contain a one of two properties: *shift* or *tip*. But remember, if you specified only one parameter, that HTML element must have the attribute, which will reimburse the absence of second value. 
+
+Value of first - direction of tooltip and it may be the only one of predefined words, which are specified in possible values list. And second - is a plain text of tooltip.
+
+Examples with incomplete list of parameters:
+
+````html
+<span title="Some value"></span>
+<script>document.querySelectorAll('span').simpleTooltip({shift: 'south'});</script>
+
+<!-- CSS class is used only for example. -->
+<div class="set-tooltip" data-hint="west"></div>
+<script>document.querySelectorAll('.set-tooltip').simpleTooltip({tip: 'south'});</script>
+````
+
 Why was used the JavaScript?
 -------
 Functions of plugin isn't numerous. Initially, performed checks positioning of all elements which have a
@@ -44,28 +82,6 @@ tooltip don't directed to south or north, work of plugin will be stopped. Otherw
 a few actions:
 - width is greater maximal - tooltip gets value of maximum width and a special text formatting.
 - directed on south or north - tooltip is aligned to center of element which it's assigned.
-
-Examples for usage the simpleTooltip method
--------
-````javascript
-/**
- * For Element object
- */
-document.getElementById('id').simpleTooltip();
-
-/**
- * For NodeList object
- */
-document.querySelectorAll('.class a').simpleTooltip();
-
-/**
- * For jQuery object
- */
-$('.class a').simpleTooltip();
-````
-**Remember,** parameter of `.simpleTooltip()` method must be an object and contain a two properties - *shift* & *tip*.
-Value of first - direction of tooltip and it may be the only one of predefined words, which are specified
-in [Usage](#usage) section. And second - is a plain text of tooltip.
 
 Crossbrowsing
 -------
@@ -128,6 +144,10 @@ Changelog
 **Version [2.0.1](https://github.com/BR0kEN-/simpleTooltip/tree/v2.0.1)**, November 16, 2013:
 - fixed an [issue #7](https://github.com/BR0kEN-/simpleTooltip/issues/7): Gecko didn't insert the styles into the container
 by innerText method and, in connection with this, it has been replaced on innerHTML.
+
+**Version [2.0.2](https://github.com/BR0kEN-/simpleTooltip/tree/v2.0.2)**, January 26, 2014:
+- improved the code and the method for creating the tooltip has been added to core;
+- to the simpleTooltip global object has been added the property "shift" - an array with allowed directions for displaying a tooltip. Also, from now, this object will have "init" method and it may be used for reinitialize the plugin (after append the candidate for tooltip to document, for example).
 
 Thank you
 -------
