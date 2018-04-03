@@ -1,0 +1,22 @@
+{
+  "name": "simpletooltip",
+  "main": "simpleTooltip.js",
+  "author": "Sergii Bondarenko (BR0kEN)",
+  "license": "MIT",
+  "version": "3.0.0",
+  "homepage": "https://github.com/BR0kEN-/simpleTooltip",
+  "description": "CSS tooltips with position control via JS.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BR0kEN-/simpleTooltip.git"
+  },
+  "bugs": {
+    "url": "https://github.com/BR0kEN-/simpleTooltip/issues"
+  },
+  "keywords": [
+    "tooltip",
+    "css",
+    "position",
+    "positioning"
+  ]
+}
