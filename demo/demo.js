@@ -20,6 +20,6 @@
 
   button.simpleTooltip({
     shift: 'south',
-    title: 'This tooltip was assigned by means of custom method'
+    title: 'This tooltip was assigned programmatically!'
   });
 })();

@@ -1,9 +1,10 @@
 <?php
 
-if ($_POST['hint'] !== 'dynamic') {
+if (!isset($_POST['hint']) || $_POST['hint'] !== 'dynamic') {
   exit('Go away.');
 }
 ?>
+
 <h2>Static elements with tooltips, received via AJAX call</h2>
 
 <div>
@@ -33,3 +34,7 @@ if ($_POST['hint'] !== 'dynamic') {
 <div>
   <a href="#" data-shift="se" data-title="This is an example of Southeast gravity">Southeast</a>
 </div>
+
+<?php
+
+header('Access-Control-Allow-Origin: *');

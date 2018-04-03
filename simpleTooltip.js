@@ -21,7 +21,7 @@
   }
 
   /**
-   * @type {{shifts: {String[]}, maxWidth: {Number}, attrs: {shift: {String}, width: {String}, title: {String}}}}
+   * @type {Object}
    */
   var plugin = {
     shifts: ['nw', 'north', 'ne', 'west', 'east', 'sw', 'south', 'se'],
@@ -163,7 +163,7 @@
   // Reinitialize the tooltips after AJAX call.
   xhr.prototype.send = function() {
     xhrSend.apply(this, arguments);
-    setTimeout(plugin.init, 100);
+    setTimeout(plugin.init, 500);
   };
 
   for (var i = 0; i < prototypes.length; i++) {
