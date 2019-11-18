@@ -22,4 +22,12 @@
     shift: 'south',
     title: 'This tooltip was assigned programmatically!'
   });
+
+  document.querySelectorAll('.custom .ellipsis').simpleTooltip({
+    shift: 'south',
+    title: 'Tooltip here is shown until all text is visible',
+    hideIf: function(element) {
+      return element.offsetWidth >= element.scrollWidth;
+    }
+  });
 })();

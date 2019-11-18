@@ -11,6 +11,12 @@
  *   .simpleTooltip();
  *
  * jQuery('.class a').simpleTooltip();
+ *
+ * @namespace SimpleTooltip
+ * @typedef {Object} SimpleTooltip.Options
+ * @property {String} [title]
+ * @property {function(element: Element): Boolean} [hideIf]
+ * @property {('nw'|'north'|'ne'|'west'|'east'|'sw'|'south'|'se')} shift
  */
 
 (function(window, document, xhr) {
@@ -38,6 +44,10 @@
   var xhrSend = xhr.prototype.send;
   /**
    * @type {Object[]}
+   *
+   * @typedef {function(options: SimpleTooltip.Options)} Element.simpleTooltip
+   * @typedef {function(options: SimpleTooltip.Options)} NodeList.simpleTooltip
+   * @typedef {function(options: SimpleTooltip.Options)} jQuery.simpleTooltip
    */
   var prototypes = [Element, NodeList, window.jQuery];
   /**
@@ -70,6 +80,7 @@
     while (--i >= 0) {
       var hint = hints[i];
       var title = hint.getAttribute('title');
+      var hintStyle = window.getComputedStyle(hint);
 
       // Allow to use the "title" as fallback.
       if (title) {
@@ -78,12 +89,23 @@
       }
 
       // Replace "static" positioning by "relative".
-      if (window.getComputedStyle(hint).position.length < 7) {
+      if (hintStyle.position.length < 7 && !/hidden/.test(hintStyle.overflow)) {
         hint.style.position = 'relative';
       }
 
       // Set handlers for all elements having tooltips.
       hint.addEventListener('mouseover', function() {
+        if (typeof this.simpleTooltipHideIf === 'function') {
+          if (this.simpleTooltipHideIf(this)) {
+            this.removeAttribute(plugin.attrs.shift);
+
+            return;
+          }
+          else {
+            this.setAttribute(plugin.attrs.shift, this.simpleTooltipShift);
+          }
+        }
+
         // Copy content of the tooltip for width computation.
         // Width should always gets recalculated because the value
         // of the attribute might be modified.
@@ -173,6 +195,9 @@
       return;
     }
 
+    /**
+     * @param {SimpleTooltip.Options} options
+     */
     prototype.prototype.simpleTooltip = function(options) {
       options = options || {};
 
@@ -191,6 +216,8 @@
         if (options.shift && options.title) {
           element.setAttribute(plugin.attrs.shift, options.shift);
           element.setAttribute(plugin.attrs.title, options.title);
+          element.simpleTooltipHideIf = options.hideIf;
+          element.simpleTooltipShift = options.shift;
         }
       }
     };

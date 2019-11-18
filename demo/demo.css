@@ -114,3 +114,14 @@ li {
 li a:hover {
   text-decoration: none;
 }
+.custom > div {
+  position: relative;
+  max-width: 100px;
+}
+.ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow-x: hidden;
+  padding: 0 15px;
+  display: block;
+}

@@ -31,7 +31,7 @@ Possible values for the `data-shift` and their impact on a shift:
 
 ### Examples
 
-````javascript
+```javascript
 var params = {
     shift: 'west',
     title: 'Some text for displaying'
@@ -51,13 +51,13 @@ document.querySelectorAll('.class a').simpleTooltip(params);
  * For {jQuery}.
  */
 jQuery('.class a').simpleTooltip(params);
-````
+```
 
 **Note**, the parameter to `.simpleTooltip()` must be an object that might contain `shift` and/or `title`. You can reimburse lack of parameters by setting them as attributes to HTML element (`data-shift` and/or `data-title` or `title`).
 
 Examples with incomplete list of parameters:
 
-````html
+```html
 <span title="Some value"></span>
 <script>
   document
@@ -72,7 +72,20 @@ Examples with incomplete list of parameters:
     .querySelectorAll('.set-tooltip')
     .simpleTooltip({title: 'Some nice text'});
 </script>
-````
+```
+
+There's also an ability to conditionally display the tooltip. Pass a function assigned to the `hideIf` parameter and compute the necessity of showing the tip.
+
+```javascript
+document
+.querySelectorAll('.set-tooltip')
+  .simpleTooltip({
+    shift: 'south',
+    title: 'Some nice text',
+    // Show the tooltip if a text within a container is wider than its width.
+    hideIf: (element) => element.offsetWidth >= element.scrollWidth,
+  });
+```
 
 ## Why JavaScript is needed?
 
