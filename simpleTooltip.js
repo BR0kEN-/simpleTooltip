@@ -30,6 +30,12 @@
    * @param {Element} hint
    */
   function setup(hint) {
+    if (hint.simpleTooltipProcessed) {
+      return;
+    }
+
+    hint.simpleTooltipProcessed = true;
+
     var title = hint.getAttribute('title');
     var hintStyle = window.getComputedStyle(hint);
 
@@ -91,9 +97,9 @@
 
       // If not "south" or "north".
       if (shift.length < 5) {
-        var elementOffsetLeft = this.offsetLeft || this.parentNode.offsetLeft;
-        var noPixelsAtRight = window.innerWidth - (elementOffsetLeft + this.offsetWidth + 20) < plugin.maxWidth;
-        var noPixelsAtLeft = elementOffsetLeft - 20 < plugin.maxWidth;
+        var dimensions = this.getBoundingClientRect();
+        var noPixelsAtRight = window.innerWidth - (dimensions.left + dimensions.width + 20) < plugin.maxWidth;
+        var noPixelsAtLeft = dimensions.left - 20 < plugin.maxWidth;
 
         // Auto-positioning of the tooltip if it's wider than space to
         // the end of the window.

@@ -3,7 +3,7 @@
   "main": "simpleTooltip.js",
   "author": "Sergii Bondarenko (BR0kEN)",
   "license": "MIT",
-  "version": "3.2.0",
+  "version": "3.3.0",
   "homepage": "https://github.com/BR0kEN-/simpleTooltip",
   "description": "CSS tooltips with position control via JS.",
   "repository": {
