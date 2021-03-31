@@ -212,7 +212,10 @@
         }
 
         if (options.shift && options.title) {
-          element.setAttribute(plugin.attrs.shift, options.shift);
+          if (typeof options.hideIf === 'function' && !options.hideIf(element)) {
+            element.setAttribute(plugin.attrs.shift, options.shift);
+          }
+
           element.setAttribute(plugin.attrs.title, options.title);
           element.simpleTooltipHideIf = options.hideIf;
           element.simpleTooltipShift = options.shift;
