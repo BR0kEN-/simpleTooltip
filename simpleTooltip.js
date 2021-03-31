@@ -14,9 +14,10 @@
  *
  * @namespace SimpleTooltip
  * @typedef {Object} SimpleTooltip.Options
- * @property {String} [title]
- * @property {function(element: Element): Boolean} [hideIf]
+ * @property {string} [title]
+ * @property {function(element: Element): boolean} [hideIf]
  * @property {('nw'|'north'|'ne'|'west'|'east'|'sw'|'south'|'se')} shift
+ * @property {boolean} destruct
  */
 
 (function(window, document, xhr) {
@@ -50,17 +51,14 @@
       hint.style.position = 'relative';
     }
 
-    // Set handlers for all elements having tooltips.
-    hint.addEventListener('mouseover', function() {
+    hint.simpleTooltipHandler = function() {
       if (typeof this.simpleTooltipHideIf === 'function') {
         if (this.simpleTooltipHideIf(this)) {
           this.removeAttribute(plugin.attrs.shift);
-
           return;
         }
-        else {
-          this.setAttribute(plugin.attrs.shift, this.simpleTooltipShift);
-        }
+
+        this.setAttribute(plugin.attrs.shift, this.simpleTooltipShift);
       }
 
       // Copy content of the tooltip for width computation.
@@ -123,13 +121,17 @@
 
       // Apply styles for a current tooltip.
       containers.css.innerHTML = style;
-    }, false);
+    };
+
+    // Set handlers for all elements having tooltips.
+    hint.addEventListener(plugin.event, hint.simpleTooltipHandler, false);
   }
 
   /**
    * @type {Object}
    */
   var plugin = {
+    event: 'mouseover',
     shifts: ['nw', 'north', 'ne', 'west', 'east', 'sw', 'south', 'se'],
     maxWidth: 300,
     attrs: {
@@ -202,24 +204,26 @@
       for (var i = 0, all = this.length || 1; i < all; i++) {
         var element = this[i] || this;
 
-        try {
-          options.title = options.title || element.getAttribute('title');
-          options.shift = plugin.shifts[
-            plugin.shifts.indexOf(options.shift || element.getAttribute(plugin.attrs.shift))
-          ];
-        } catch (e) {
-          continue;
-        }
-
-        if (options.shift && options.title) {
-          if (typeof options.hideIf === 'function' && !options.hideIf(element)) {
-            element.setAttribute(plugin.attrs.shift, options.shift);
+        if (options.destruct) {
+          element.removeAttribute(plugin.attrs.shift);
+          element.removeEventListener(plugin.event, element.simpleTooltipHandler);
+        } else {
+          try {
+            options.title = options.title || element.getAttribute('title');
+            options.shift = plugin.shifts[
+              plugin.shifts.indexOf(options.shift || element.getAttribute(plugin.attrs.shift))
+            ];
+          } catch (e) {
+            continue;
           }
 
-          element.setAttribute(plugin.attrs.title, options.title);
-          element.simpleTooltipHideIf = options.hideIf;
-          element.simpleTooltipShift = options.shift;
-          setup(element);
+          if (options.shift && options.title) {
+            element.setAttribute(plugin.attrs.title, options.title);
+            element.setAttribute(plugin.attrs.shift, options.shift);
+            element.simpleTooltipHideIf = options.hideIf;
+            element.simpleTooltipShift = options.shift;
+            setup(element);
+          }
         }
       }
     };
